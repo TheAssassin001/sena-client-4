@@ -119,6 +119,35 @@
         });
       }
     });
+
+    // --- Shooting star effect ---
+    function launchShootingStar() {
+      const shootingStar = document.createElement('div');
+      shootingStar.className = 'shooting-star';
+      // Diagonal: start somewhere in top-left quadrant, end in bottom-right
+      const startY = 5 + Math.random() * 30;
+      const endY = startY + 18 + Math.random() * 10;
+      const startX = 5 + Math.random() * 30;
+      const endX = startX + 35 + Math.random() * 15;
+      shootingStar.style.setProperty('--sx', startX + 'vw');
+      shootingStar.style.setProperty('--sy', startY + 'vh');
+      shootingStar.style.setProperty('--ex', endX + 'vw');
+      shootingStar.style.setProperty('--ey', endY + 'vh');
+      shootingStar.style.top = '0';
+      shootingStar.style.left = '0';
+      const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+      shootingStar.style.transform += ` rotate(${angle}deg)`;
+      document.body.appendChild(shootingStar);
+      shootingStar.addEventListener('animationend', () => shootingStar.remove());
+    }
+    function scheduleShootingStar() {
+      const delay = 2500 + Math.random() * 8000;
+      setTimeout(() => {
+        launchShootingStar();
+        scheduleShootingStar();
+      }, delay);
+    }
+    scheduleShootingStar();
   });
 </script>
 </html>
