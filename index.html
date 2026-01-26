@@ -13,6 +13,12 @@
   <nav class="navbar">
     <div class="container nav-container">
       <a href="index.html" class="logo">Ayio</a>
+      <!-- Hamburger menu button (mobile only) -->
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
@@ -41,5 +47,17 @@
       <p>&copy; 2026 Ayio. All rights reserved.</p>
     </div>
   </footer>
+  <!-- Minimal JS for mobile nav toggle -->
+  <script>
+    // Hamburger menu toggle for mobile
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      navToggle.addEventListener('click', function() {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open);
+      });
+    });
+  </script>
 </body>
 </html>
