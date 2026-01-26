@@ -66,16 +66,61 @@
       <p>&copy; 2026 Ayio. All rights reserved.</p>
     </div>
   </footer>
-  <!-- Minimal JS for mobile nav toggle -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const navToggle = document.querySelector('.nav-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      navToggle.addEventListener('click', function() {
-        const open = navLinks.classList.toggle('open');
-        navToggle.setAttribute('aria-expanded', open);
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    navToggle.addEventListener('click', function() {
+      const open = navLinks.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open);
+    });
+
+    // --- Interactive, twinkling stars ---
+    const STAR_COUNT = 18;
+    const stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = 1.2 + Math.random() * 1.6;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      star.dataset.x = x;
+      star.dataset.y = y;
+      star.style.left = x + 'vw';
+      star.style.top = y + 'vh';
+      star.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+      document.body.appendChild(star);
+      stars.push(star);
+    }
+    document.addEventListener('mousemove', function(e) {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const dx = (e.clientX - cx) / cx;
+      const dy = (e.clientY - cy) / cy;
+      stars.forEach((star, i) => {
+        const depth = 0.5 + (i / STAR_COUNT) * 1.5;
+        const tx = dx * depth * 8;
+        const ty = dy * depth * 8;
+        star.style.transform = `translate(${tx}px, ${ty}px)`;
       });
     });
-  </script>
+    window.addEventListener('deviceorientation', function(e) {
+      if (e.gamma !== null && e.beta !== null) {
+        const dx = e.gamma / 45;
+        const dy = e.beta / 90;
+        stars.forEach((star, i) => {
+          const depth = 0.5 + (i / STAR_COUNT) * 1.5;
+          const tx = dx * depth * 8;
+          const ty = dy * depth * 8;
+          star.style.transform = `translate(${tx}px, ${ty}px)`;
+        });
+      }
+    });
+  });
+</script>
+</html>
 </body>
 </html>
