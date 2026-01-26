@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - Ayio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">Ayio</a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="about-section container" style="text-align:center;">
+      <h1>Thank you for reaching out!</h1>
+      <p>Welcome to the Ayio universe, we will contact you to assist with this request.</p>
+      <a href="index.html" class="logo" style="display:inline-block;margin-top:2rem;">Back to Home</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <ul class="footer-links">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <p>&copy; 2026 Ayio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle for mobile
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      navToggle.addEventListener('click', function() {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open);
+      });
+      // --- Interactive, twinkling stars ---
+      const STAR_COUNT = 18;
+      const stars = [];
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        const size = 1.2 + Math.random() * 1.6;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        star.dataset.x = x;
+        star.dataset.y = y;
+        star.style.left = x + 'vw';
+        star.style.top = y + 'vh';
+        star.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+        document.body.appendChild(star);
+        stars.push(star);
+      }
+      document.addEventListener('mousemove', function(e) {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx;
+        const dy = (e.clientY - cy) / cy;
+        stars.forEach((star, i) => {
+          const depth = 0.5 + (i / STAR_COUNT) * 1.5;
+          const tx = dx * depth * 8;
+          const ty = dy * depth * 8;
+          star.style.transform = `translate(${tx}px, ${ty}px)`;
+        });
+      });
+      window.addEventListener('deviceorientation', function(e) {
+        if (e.gamma !== null && e.beta !== null) {
+          const dx = e.gamma / 45;
+          const dy = e.beta / 90;
+          stars.forEach((star, i) => {
+            const depth = 0.5 + (i / STAR_COUNT) * 1.5;
+            const tx = dx * depth * 8;
+            const ty = dy * depth * 8;
+            star.style.transform = `translate(${tx}px, ${ty}px)`;
+          });
+        }
+      });
+      // --- Shooting star effect ---
+      function launchShootingStar() {
+        const shootingStar = document.createElement('div');
+        shootingStar.className = 'shooting-star';
+        const startY = 5 + Math.random() * 30;
+        const endY = startY + 18 + Math.random() * 10;
+        const startX = 5 + Math.random() * 30;
+        const endX = startX + 35 + Math.random() * 15;
+        shootingStar.style.setProperty('--sx', startX + 'vw');
+        shootingStar.style.setProperty('--sy', startY + 'vh');
+        shootingStar.style.setProperty('--ex', endX + 'vw');
+        shootingStar.style.setProperty('--ey', endY + 'vh');
+        shootingStar.style.top = '0';
+        shootingStar.style.left = '0';
+        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+        shootingStar.style.transform += ` rotate(${angle}deg)`;
+        document.body.appendChild(shootingStar);
+        shootingStar.addEventListener('animationend', () => shootingStar.remove());
+      }
+      function scheduleShootingStar() {
+        const delay = 2500 + Math.random() * 8000;
+        setTimeout(() => {
+          launchShootingStar();
+          scheduleShootingStar();
+        }, delay);
+      }
+      scheduleShootingStar();
+    });
+  </script>
+</body>
+</html>
