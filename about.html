@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar">
@@ -32,8 +34,23 @@
   <main class="main-content">
     <section class="about-section container">
       <h1>About Us</h1>
-      <p>Ayio is dedicated to supporting women’s health through every stage of life. Our mission is to provide accessible, trustworthy resources and tools that empower women to take charge of their well-being. We believe in a holistic approach, combining empathy, science, and community to foster a safe space for all women.</p>
-      <p>Our team is passionate about making a positive impact in women’s lives, ensuring that every woman feels heard, supported, and informed. We are committed to privacy, inclusivity, and continuous improvement in everything we do.</p>
+      <p class="about-intro">AYIO is dedicated to ensuring that all people have access to resources that empower their
+        reproductive health management.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h2>Track</h2>
+          <p>Use our intelligent algorithm to understand your health better – always free of charge!</p>
+        </div>
+        <div class="feature-card">
+          <h2>Learn</h2>
+          <p>Daily health resources and quizzes that make learning about your health fun!</p>
+        </div>
+        <div class="feature-card">
+          <h2>Rewards</h2>
+          <p>Earn stars on your daily quizzes and use these rewards for purchases at participating stores!</p>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -49,10 +66,10 @@
   </footer>
 </body>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-    navToggle.addEventListener('click', function() {
+    navToggle.addEventListener('click', function () {
       const open = navLinks.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', open);
     });
@@ -76,7 +93,7 @@
       document.body.appendChild(star);
       stars.push(star);
     }
-    document.addEventListener('mousemove', function(e) {
+    document.addEventListener('mousemove', function (e) {
       const cx = window.innerWidth / 2;
       const cy = window.innerHeight / 2;
       const dx = (e.clientX - cx) / cx;
@@ -88,7 +105,7 @@
         star.style.transform = `translate(${tx}px, ${ty}px)`;
       });
     });
-    window.addEventListener('deviceorientation', function(e) {
+    window.addEventListener('deviceorientation', function (e) {
       if (e.gamma !== null && e.beta !== null) {
         const dx = e.gamma / 45;
         const dy = e.beta / 90;
@@ -131,6 +148,8 @@
     scheduleShootingStar();
   });
 </script>
+
 </html>
 </body>
+
 </html>
