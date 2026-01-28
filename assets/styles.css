@@ -618,7 +618,7 @@ a:focus {
   right: 0;
   background: linear-gradient(135deg, #1a1d2e 0%, #0f1119 100%);
   border-top: 1px solid rgba(124, 77, 255, 0.3);
-  padding: 1.2rem 0;
+  padding: 1.5rem 0;
   z-index: 1000;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
   transform: translateY(100%);
@@ -631,38 +631,68 @@ a:focus {
 
 .cookie-banner-content {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1.2rem;
 }
 
 .cookie-banner p {
   margin: 0;
   color: var(--gray);
   font-size: 0.95rem;
-  flex: 1;
-  min-width: 250px;
+  line-height: 1.6;
+}
+
+.cookie-link {
+  color: var(--purple);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.cookie-link:hover {
+  color: #9d7bff;
+}
+
+.cookie-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .cookie-accept-btn {
-  background: var(--purple);
-  color: var(--white);
   border: none;
   border-radius: 0.5rem;
-  padding: 0.7rem 1.8rem;
+  padding: 0.7rem 1.5rem;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'DM Sans', Arial, sans-serif;
   white-space: nowrap;
+  flex: 1;
+  min-width: 200px;
 }
 
-.cookie-accept-btn:hover {
+.cookie-btn-primary {
+  background: var(--purple);
+  color: var(--white);
+}
+
+.cookie-btn-primary:hover {
   background: #5f36c7;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(124, 77, 255, 0.4);
+}
+
+.cookie-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cookie-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .cookie-accept-btn:active {
@@ -671,21 +701,25 @@ a:focus {
 
 @media (max-width: 700px) {
   .cookie-banner {
-    padding: 1rem 0;
+    padding: 1.2rem 0;
   }
 
   .cookie-banner-content {
-    flex-direction: column;
-    align-items: stretch;
     gap: 1rem;
   }
 
   .cookie-banner p {
-    text-align: center;
     font-size: 0.9rem;
+    text-align: left;
+  }
+
+  .cookie-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
   }
 
   .cookie-accept-btn {
     width: 100%;
+    min-width: auto;
   }
 }

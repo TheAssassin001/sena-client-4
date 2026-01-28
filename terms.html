@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - Ayio</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Ayio</a>
+            <!-- Hamburger menu button (mobile only) -->
+            <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="profile.html">My Profile</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Terms of Use Section -->
+    <main class="main-content">
+        <section class="privacy-section container">
+            <h1>Terms of Use</h1>
+            <p>This is a placeholder for the Terms of Use. Full terms and conditions coming soon.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <!-- Navigation Links Section -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Navigation</h3>
+                <ul class="footer-nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="profile.html">My Profile</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Legal Links Section -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Legal</h3>
+                <ul class="footer-legal-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <div class="footer-copyright">
+            <p>&copy; 2026 Ayio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <script src="assets/cookie-consent.js"></script>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        navToggle.addEventListener('click', function () {
+            const open = navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', open);
+        });
+
+        // --- Interactive, twinkling stars ---
+        const STAR_COUNT = 18;
+        const stars = [];
+        for (let i = 0; i < STAR_COUNT; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = 1.2 + Math.random() * 1.6;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            star.dataset.x = x;
+            star.dataset.y = y;
+            star.style.left = x + 'vw';
+            star.style.top = y + 'vh';
+            star.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+            document.body.appendChild(star);
+            stars.push(star);
+        }
+        document.addEventListener('mousemove', function (e) {
+            const cx = window.innerWidth / 2;
+            const cy = window.innerHeight / 2;
+            const dx = (e.clientX - cx) / cx;
+            const dy = (e.clientY - cy) / cy;
+            stars.forEach((star, i) => {
+                const depth = 0.5 + (i / STAR_COUNT) * 1.5;
+                const tx = dx * depth * 8;
+                const ty = dy * depth * 8;
+                star.style.transform = `translate(${tx}px, ${ty}px)`;
+            });
+        });
+        window.addEventListener('deviceorientation', function (e) {
+            if (e.gamma !== null && e.beta !== null) {
+                const dx = e.gamma / 45;
+                const dy = e.beta / 90;
+                stars.forEach((star, i) => {
+                    const depth = 0.5 + (i / STAR_COUNT) * 1.5;
+                    const tx = dx * depth * 8;
+                    const ty = dy * depth * 8;
+                    star.style.transform = `translate(${tx}px, ${ty}px)`;
+                });
+            }
+        });
+
+        // --- Shooting star effect ---
+        function launchShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            const startY = 5 + Math.random() * 30;
+            const endY = startY + 18 + Math.random() * 10;
+            const startX = 5 + Math.random() * 30;
+            const endX = startX + 35 + Math.random() * 15;
+            shootingStar.style.setProperty('--sx', startX + 'vw');
+            shootingStar.style.setProperty('--sy', startY + 'vh');
+            shootingStar.style.setProperty('--ex', endX + 'vw');
+            shootingStar.style.setProperty('--ey', endY + 'vh');
+            shootingStar.style.top = '0';
+            shootingStar.style.left = '0';
+            const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+            shootingStar.style.transform += ` rotate(${angle}deg)`;
+            document.body.appendChild(shootingStar);
+            shootingStar.addEventListener('animationend', () => shootingStar.remove());
+        }
+        function scheduleShootingStar() {
+            const delay = 2500 + Math.random() * 8000;
+            setTimeout(() => {
+                launchShootingStar();
+                scheduleShootingStar();
+            }, delay);
+        }
+        scheduleShootingStar();
+    });
+</script>
+
+</html>
