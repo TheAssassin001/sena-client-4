@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar">
@@ -37,21 +39,41 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container footer-content">
-      <ul class="footer-links">
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+    <div class="container footer-container">
+      <!-- Navigation Links Section -->
+      <div class="footer-section">
+        <h3 class="footer-heading">Navigation</h3>
+        <ul class="footer-nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="profile.html">My Profile</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal Links Section -->
+      <div class="footer-section">
+        <h3 class="footer-heading">Legal</h3>
+        <ul class="footer-legal-links">
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-copyright">
       <p>&copy; 2026 Ayio. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
     // Hamburger menu toggle for mobile
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const navToggle = document.querySelector('.nav-toggle');
       const navLinks = document.querySelector('.nav-links');
-      navToggle.addEventListener('click', function() {
+      navToggle.addEventListener('click', function () {
         const open = navLinks.classList.toggle('open');
         navToggle.setAttribute('aria-expanded', open);
       });
@@ -74,7 +96,7 @@
         document.body.appendChild(star);
         stars.push(star);
       }
-      document.addEventListener('mousemove', function(e) {
+      document.addEventListener('mousemove', function (e) {
         const cx = window.innerWidth / 2;
         const cy = window.innerHeight / 2;
         const dx = (e.clientX - cx) / cx;
@@ -86,7 +108,7 @@
           star.style.transform = `translate(${tx}px, ${ty}px)`;
         });
       });
-      window.addEventListener('deviceorientation', function(e) {
+      window.addEventListener('deviceorientation', function (e) {
         if (e.gamma !== null && e.beta !== null) {
           const dx = e.gamma / 45;
           const dy = e.beta / 90;
@@ -128,4 +150,5 @@
     });
   </script>
 </body>
+
 </html>
